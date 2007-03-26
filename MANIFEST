@@ -1,0 +1,12 @@
+Build.PL
+Changes
+lib/Egg/Helper/P/Cache.pm
+lib/Egg/Plugin/Cache.pm
+Makefile.PL
+MANIFEST			This list of files
+META.yml
+README
+t/00_use.t
+t/01_cache.t
+t/02_helper.t
+t/89_pod.t
