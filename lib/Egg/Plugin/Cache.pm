@@ -10,7 +10,7 @@ use warnings;
 use UNIVERSAL::require;
 use File::Find;
 
-our $VERSION= '0.03';
+our $VERSION= '0.04';
 
 sub setup {
 	my($e)= @_;

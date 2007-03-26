@@ -15,4 +15,4 @@ requires:
   Cache::Cache: 1.05
   Egg::Release: 1.09
   File::Find: 0
-version: 0.03
+version: 0.04
