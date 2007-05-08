@@ -1,8 +1,10 @@
-abstract: Cache for Egg.
+abstract: cache for Egg plugin.
 author: Masatoshi Mizuno E<lt>lusheE<64>cpan.orgE<gt>
 build_requires: 
-  Test::More: 0
+  Test::Perl::Critic: 0
   Test::Pod: 0
+  Test::Pod::Coverage: 0
+  Test::Simple: 0
 distribution_type: module
 generated_by: Module::Install version 0.64
 license: perl
@@ -13,6 +15,5 @@ no_index:
     - t
 requires: 
   Cache::Cache: 1.05
-  Egg::Release: 1.09
-  File::Find: 0
-version: 0.04
+  Egg::Release: 2
+version: 2.00

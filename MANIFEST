@@ -1,6 +1,8 @@
 Build.PL
 Changes
-lib/Egg/Helper/P/Cache.pm
+eg/Example/lib/Example.pm
+eg/Example/lib/Example/Cache/Content.pm
+lib/Egg/Helper/Plugin/Cache.pm
 lib/Egg/Plugin/Cache.pm
 Makefile.PL
 MANIFEST			This list of files

@@ -8,11 +8,15 @@ my $builder = Module::Build->new(
   license           => 'perl',
 
   requires => {
-    'Egg::Release'=> 1.09,
+
+    'Egg::Release'=> 2.00,
     'Cache::Cache'=> 1.05,
-    'File::Find'  => 0,
-    'Test::More'  => 0,
-    'Test::Pod'   => 0,
+
+    'Test::Simple'          => 0,
+    'Test::Pod'             => 0,
+    'Test::Perl::Critic'    => 0,
+    'Test::Pod::Coverage'   => 0,
+
     },
 
   );
