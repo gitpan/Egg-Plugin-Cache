@@ -16,4 +16,4 @@ no_index:
 requires: 
   Cache::Cache: 1.05
   Egg::Release: 2
-version: 2.00
+version: 2.01

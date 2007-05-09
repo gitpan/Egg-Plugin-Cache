@@ -2,7 +2,7 @@ package Egg::Plugin::Cache;
 #
 # Masatoshi Mizuno E<lt>lusheE<64>cpan.orgE<gt>
 #
-# $Id: Cache.pm 109 2007-05-08 01:11:58Z lushe $
+# $Id: Cache.pm 112 2007-05-09 21:43:21Z lushe $
 #
 
 =head1 NAME
@@ -60,7 +60,7 @@ use UNIVERSAL::require;
 use File::Find;
 use Carp qw/croak/;
 
-our $VERSION= '2.00';
+our $VERSION= '2.01';
 
 sub _setup {
 	my($e)= @_;
@@ -135,7 +135,10 @@ sub new {
 	my $cname= $e->global->{PLUGIN_CACHE}{$class}
 	   || die qq{ Cache of '$class' is not setup. };
 	   $cname= "__cache_$cname";
-	bless { e=> $e, cache=> $class->$cname }, $class;
+	my $cache= $class->$cname;
+	my $self = bless { e=> $e, cache=> $cache }, $class;
+	my $init = $cache->can('_INITIALIZE') || return $self;
+	$init->($cache, $e);
 }
 
 =head2 get, set, clear, remove, purge

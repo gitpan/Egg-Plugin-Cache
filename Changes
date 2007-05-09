@@ -1,5 +1,8 @@
 Revision history for Perl extension .
 
+2.01  2007/05/09
+	- fixed of 'new' for Egg::Plugin::Cache.
+
 2.00  2007/05/03
 	- Corresponded to Egg::Release v2.00.
 
