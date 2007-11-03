@@ -4,6 +4,13 @@ package Egg::Plugin::Cache;
 #
 # $Id: Cache.pm 112 2007-05-09 21:43:21Z lushe $
 #
+use strict;
+use warnings;
+use UNIVERSAL::require;
+use File::Find;
+use Carp qw/croak/;
+
+our $VERSION= '2.02';
 
 =head1 NAME
 
@@ -53,14 +60,39 @@ the cashe module.
 
 Please refer to the document of the module used for the method of setting config.
 
-=cut
-use strict;
-use warnings;
-use UNIVERSAL::require;
-use File::Find;
-use Carp qw/croak/;
+=head1 METHODS
 
-our $VERSION= '2.01';
+=head2 cache ( [CACHE_NAME] )
+
+The handler object of CACHE_NAME is returned.
+
+CACHE_NAME is cashe controller's name.
+
+  my $cache= $e->cache('CacheControllerName');
+
+=head1 HANDLER METHODS
+
+=head2 cache
+
+The object of the cashe module read as a driver is returned.
+
+It calls it through this method if there is a peculiar method to the cashe module.
+
+  $e->cache('CacheName')->cache;
+
+=head2 new
+
+Constructor who returns handler object.
+
+=head2 get, set, clear, remove, purge
+
+It is an accessor to the cashe driver.
+
+If it is a method not being supported by the cashe driver, the exception is generated.
+
+  my $data= $e->cache('CacheName')->get('cache_key');
+
+=cut
 
 sub _setup {
 	my($e)= @_;
@@ -90,18 +122,6 @@ sub _setup {
 	}
 	$e->next::method;
 }
-
-=head1 METHODS
-
-=head2 cache ( [CACHE_NAME] )
-
-The handler object of CACHE_NAME is returned.
-
-CACHE_NAME is cashe controller's name.
-
-  my $cache= $e->cache('CacheControllerName');
-
-=cut
 sub cache {
 	my $e  = shift;
 	my $pkg= shift || croak q{ I want Cache name. };
@@ -112,24 +132,8 @@ package Egg::Plugin::Cache::handler;
 use strict;
 use base qw/Egg::Base/;
 
-=head1 HANDLER METHODS
-
-=head2 cache
-
-The object of the cashe module read as a driver is returned.
-
-It calls it through this method if there is a peculiar method to the cashe module.
-
-  $e->cache('CacheName')->cache;
-
-=cut
 __PACKAGE__->mk_accessors(qw/ cache /);
 
-=head2 new
-
-Constructor who returns handler object.
-
-=cut
 sub new {
 	my($class, $e)= @_;
 	my $cname= $e->global->{PLUGIN_CACHE}{$class}
@@ -140,16 +144,6 @@ sub new {
 	my $init = $cache->can('_INITIALIZE') || return $self;
 	$init->($cache, $e);
 }
-
-=head2 get, set, clear, remove, purge
-
-It is an accessor to the cashe driver.
-
-If it is a method not being supported by the cashe driver, the exception is generated.
-
-  my $data= $e->cache('CacheName')->get('cache_key');
-
-=cut
 sub get    { shift->cache->get(@_)    }
 sub set    { shift->cache->set(@_)    }
 sub clear  { shift->cache->clear(@_)  }

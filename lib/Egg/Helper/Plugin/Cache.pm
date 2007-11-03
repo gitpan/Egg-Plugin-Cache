@@ -4,6 +4,10 @@ package Egg::Helper::Plugin::Cache;
 #
 # $Id: Cache.pm 110 2007-05-08 01:12:54Z lushe $
 #
+use strict;
+use warnings;
+
+our $VERSION = '2.00';
 
 =head1 NAME
 
@@ -50,10 +54,6 @@ added and used.
   }
 
 =cut
-use strict;
-use warnings;
-
-our $VERSION = '2.00';
 
 sub _execute {
 	my($self)= @_;

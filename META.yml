@@ -1,19 +1,29 @@
+---
+name: Egg-Plugin-Cache
+version: 2.02
+author:
+  - 'Masatoshi Mizuno E<lt>lusheE<64>cpan.orgE<gt>'
 abstract: cache for Egg plugin.
-author: Masatoshi Mizuno E<lt>lusheE<64>cpan.orgE<gt>
-build_requires: 
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  Cache::Cache: 1.05
+  Egg::Release: 2
+  Test::More: 0
   Test::Perl::Critic: 0
   Test::Pod: 0
   Test::Pod::Coverage: 0
-  Test::Simple: 0
-distribution_type: module
-generated_by: Module::Install version 0.64
-license: perl
-name: Egg-Plugin-Cache
-no_index: 
-  directory: 
-    - inc
-    - t
-requires: 
-  Cache::Cache: 1.05
-  Egg::Release: 2
-version: 2.01
+provides:
+  Egg::Helper::Plugin::Cache:
+    file: lib/Egg/Helper/Plugin/Cache.pm
+    version: 2.00
+  Egg::Plugin::Cache:
+    file: lib/Egg/Plugin/Cache.pm
+    version: 2.02
+  Egg::Plugin::Cache::handler:
+    file: lib/Egg/Plugin/Cache.pm
+generated_by: Module::Build version 0.2805
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
